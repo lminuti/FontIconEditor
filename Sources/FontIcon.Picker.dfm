@@ -3,8 +3,8 @@ object frmFontIconPicker: TfrmFontIconPicker
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Icon picker'
-  ClientHeight = 314
-  ClientWidth = 288
+  ClientHeight = 356
+  ClientWidth = 286
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,8 +15,8 @@ object frmFontIconPicker: TfrmFontIconPicker
   Position = poScreenCenter
   OnCreate = FormCreate
   DesignSize = (
-    288
-    314)
+    286
+    356)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -35,7 +35,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   end
   object Label2: TLabel
     Left = 16
-    Top = 279
+    Top = 319
     Width = 94
     Height = 13
     Cursor = crHandPoint
@@ -50,7 +50,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   end
   object Label4: TLabel
     Left = 16
-    Top = 254
+    Top = 294
     Width = 71
     Height = 13
     Cursor = crHandPoint
@@ -73,7 +73,7 @@ object frmFontIconPicker: TfrmFontIconPicker
     OnChange = cmbFontsChange
   end
   object Button1: TButton
-    Left = 205
+    Left = 203
     Top = 11
     Width = 75
     Height = 25
@@ -85,7 +85,7 @@ object frmFontIconPicker: TfrmFontIconPicker
     OnClick = Button1Click
   end
   object btnCancel: TButton
-    Left = 205
+    Left = 203
     Top = 42
     Width = 75
     Height = 25
@@ -107,24 +107,97 @@ object frmFontIconPicker: TfrmFontIconPicker
     OnKeyPress = edtCharKeyPress
   end
   object GroupBox1: TGroupBox
-    Left = 16
-    Top = 126
-    Width = 169
-    Height = 115
+    Left = 8
+    Top = 110
+    Width = 177
+    Height = 178
     Caption = 'Preview'
+    Color = clBtnFace
+    ParentBackground = False
+    ParentColor = False
     TabOrder = 4
-    object lblPreview: TLabel
-      Left = 23
-      Top = 18
-      Width = 39
-      Height = 81
-      Caption = 'X'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -67
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
+    object Label5: TLabel
+      Left = 54
+      Top = 30
+      Width = 30
+      Height = 13
+      Caption = '16x16'
+    end
+    object Label6: TLabel
+      Left = 72
+      Top = 62
+      Width = 30
+      Height = 13
+      Caption = '32x32'
+    end
+    object Label7: TLabel
+      Left = 100
+      Top = 122
+      Width = 30
+      Height = 13
+      Caption = '64x64'
+    end
+    object Panel1: TPanel
+      Left = 16
+      Top = 27
+      Width = 20
+      Height = 20
+      BevelKind = bkFlat
+      BevelOuter = bvNone
+      Caption = 'Panel16x16'
+      ShowCaption = False
+      TabOrder = 0
+      object Image16x16: TImage
+        Left = 0
+        Top = 0
+        Width = 16
+        Height = 16
+        Align = alClient
+        ExplicitLeft = -4
+        ExplicitTop = -4
+      end
+    end
+    object Panel32x32: TPanel
+      Left = 16
+      Top = 53
+      Width = 36
+      Height = 36
+      BevelKind = bkFlat
+      BevelOuter = bvNone
+      Caption = 'Panel32x32'
+      ShowCaption = False
+      TabOrder = 1
+      object Image32x32: TImage
+        Left = 0
+        Top = 0
+        Width = 32
+        Height = 32
+        Align = alClient
+        ExplicitLeft = -4
+        ExplicitTop = -4
+        ExplicitWidth = 16
+        ExplicitHeight = 16
+      end
+    end
+    object Panel64x64: TPanel
+      Left = 16
+      Top = 98
+      Width = 66
+      Height = 66
+      BevelKind = bkFlat
+      BevelOuter = bvNone
+      Caption = 'Panel64x64'
+      ShowCaption = False
+      TabOrder = 2
+      object Image64x64: TImage
+        Left = 0
+        Top = 0
+        Width = 62
+        Height = 62
+        Align = alClient
+        ExplicitLeft = 24
+        ExplicitTop = 8
+      end
     end
   end
 end

@@ -27,7 +27,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ShellAPI;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ShellAPI, Vcl.ExtCtrls;
 
 type
   TfrmFontIconPicker = class(TForm)
@@ -38,9 +38,17 @@ type
     edtChar: TEdit;
     Label3: TLabel;
     GroupBox1: TGroupBox;
-    lblPreview: TLabel;
     Label2: TLabel;
     Label4: TLabel;
+    Panel1: TPanel;
+    Image16x16: TImage;
+    Panel32x32: TPanel;
+    Image32x32: TImage;
+    Panel64x64: TPanel;
+    Image64x64: TImage;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure edtCharChange(Sender: TObject);
     procedure cmbFontsChange(Sender: TObject);
@@ -60,12 +68,28 @@ type
 var
   frmFontIconPicker: TfrmFontIconPicker;
 
+procedure CopyIconFont(const FontName, Character: string; Width, Height: Integer; Canvas: TCanvas);
+
 implementation
 
 {$R *.dfm}
 
 const
   DefaultFont = 'Segoe MDL2 Assets';
+
+procedure CopyIconFont(const FontName, Character: string; Width, Height: Integer; Canvas: TCanvas);
+var
+  CharWidth: Integer;
+  CharHeight: Integer;
+begin
+  Canvas.Font.Name := FontName;
+  Canvas.Font.Height := Height;
+  Canvas.Font.Color := clBlack;
+  Canvas.Brush.Color := clWhite;
+  CharWidth := Canvas.TextWidth(Character);
+  CharHeight := Canvas.TextHeight(Character);
+  Canvas.TextOut((Width - CharWidth) div 2, (Height - CharHeight) div 2, Character);
+end;
 
 procedure TfrmFontIconPicker.Button1Click(Sender: TObject);
 begin
@@ -124,8 +148,12 @@ end;
 
 procedure TfrmFontIconPicker.UpdatePreview;
 begin
-  lblPreview.Font.Name := cmbFonts.Text;
-  lblPreview.Caption := FChar;
+  CopyIconFont(cmbFonts.Text, FChar, 16, 16, Image16x16.Canvas);
+
+  CopyIconFont(cmbFonts.Text, FChar, 32, 32, Image32x32.Canvas);
+
+  CopyIconFont(cmbFonts.Text, FChar, 64, 64, Image64x64.Canvas);
+
 end;
 
 end.

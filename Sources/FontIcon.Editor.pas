@@ -47,7 +47,8 @@ implementation
 
 { TImageListCompEditor }
 
-uses FontIcon.Picker;
+uses
+  FontIcon.Picker;
 
 procedure TImageListCompEditor.Edit;
 begin
@@ -58,22 +59,14 @@ procedure TImageListCompEditor.AddFontIcon(const FontName, Character: string);
 var
   Bitmap: TBitmap;
   ImageList: TImageList;
-  CharWidth: Integer;
 begin
   ImageList := Component as TImageList;
   Bitmap := TBitmap.Create;
   try
     Bitmap.Width := ImageList.Width;
     Bitmap.Height := ImageList.Height;
-    Bitmap.Canvas.Font.Name := FontName;
-    Bitmap.Canvas.Font.Height := ImageList.Height;
-    Bitmap.Canvas.Font.Color := clBlack;
-    Bitmap.Canvas.Brush.Color := clWhite;
-    CharWidth := Bitmap.Canvas.TextWidth(Character);
-    Bitmap.Canvas.TextOut((Bitmap.Width - CharWidth) div 2, 0, Character);
-
+    CopyIconFont(FontName, Character, Bitmap.Width, Bitmap.Height, Bitmap.Canvas);
     ImageList.AddMasked(Bitmap, clWhite);
-
   finally
     Bitmap.Free;
   end;

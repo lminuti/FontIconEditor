@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{99270D48-9D67-4AA1-A178-606A707158B1}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FontIconDesign.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Demo\DemoApp.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FontIconDesign">
+        <MSBuild Projects="FontIconDesign.dproj"/>
+    </Target>
+    <Target Name="FontIconDesign:Clean">
+        <MSBuild Projects="FontIconDesign.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FontIconDesign:Make">
+        <MSBuild Projects="FontIconDesign.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DemoApp">
+        <MSBuild Projects="..\..\Demo\DemoApp.dproj"/>
+    </Target>
+    <Target Name="DemoApp:Clean">
+        <MSBuild Projects="..\..\Demo\DemoApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DemoApp:Make">
+        <MSBuild Projects="..\..\Demo\DemoApp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FontIconDesign;DemoApp"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FontIconDesign:Clean;DemoApp:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FontIconDesign:Make;DemoApp:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
