@@ -37,6 +37,7 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -49,5 +50,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFormMain.Button1Click(Sender: TObject);
+begin
+  ShowMessage('This DEMO does nothing. INSTALL the provided package and RIGHT CLICK to the image list at design time');
+end;
 
 end.

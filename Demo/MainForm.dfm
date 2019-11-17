@@ -22,6 +22,7 @@ object FormMain: TFormMain
     ImageIndex = 0
     Images = ImageList1
     TabOrder = 0
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 8
@@ -32,6 +33,7 @@ object FormMain: TFormMain
     ImageIndex = 1
     Images = ImageList1
     TabOrder = 1
+    OnClick = Button1Click
   end
   object Button3: TButton
     Left = 8
@@ -42,6 +44,7 @@ object FormMain: TFormMain
     ImageIndex = 2
     Images = ImageList1
     TabOrder = 2
+    OnClick = Button1Click
   end
   object Button4: TButton
     Left = 8
@@ -52,6 +55,7 @@ object FormMain: TFormMain
     ImageIndex = 3
     Images = ImageList1
     TabOrder = 3
+    OnClick = Button1Click
   end
   object ImageList1: TImageList
     Height = 32
