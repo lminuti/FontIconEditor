@@ -3,7 +3,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Icon picker'
-  ClientHeight = 356
+  ClientHeight = 398
   ClientWidth = 286
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   OnCreate = FormCreate
   DesignSize = (
     286
-    356)
+    398)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -35,7 +35,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   end
   object Label2: TLabel
     Left = 16
-    Top = 319
+    Top = 367
     Width = 94
     Height = 13
     Cursor = crHandPoint
@@ -50,7 +50,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   end
   object Label4: TLabel
     Left = 16
-    Top = 294
+    Top = 342
     Width = 71
     Height = 13
     Cursor = crHandPoint
@@ -62,6 +62,13 @@ object frmFontIconPicker: TfrmFontIconPicker
     Font.Style = [fsUnderline]
     ParentFont = False
     OnClick = Label4Click
+  end
+  object Label8: TLabel
+    Left = 16
+    Top = 112
+    Width = 25
+    Height = 13
+    Caption = 'Color'
   end
   object cmbFonts: TComboBox
     Left = 16
@@ -108,7 +115,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   end
   object GroupBox1: TGroupBox
     Left = 8
-    Top = 110
+    Top = 158
     Width = 177
     Height = 178
     Caption = 'Preview'
@@ -199,5 +206,13 @@ object frmFontIconPicker: TfrmFontIconPicker
         ExplicitTop = 8
       end
     end
+  end
+  object edtColor: TColorBox
+    Left = 16
+    Top = 131
+    Width = 169
+    Height = 22
+    TabOrder = 5
+    OnChange = edtColorChange
   end
 end

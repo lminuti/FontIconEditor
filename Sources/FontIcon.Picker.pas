@@ -49,6 +49,8 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
+    edtColor: TColorBox;
     procedure FormCreate(Sender: TObject);
     procedure edtCharChange(Sender: TObject);
     procedure cmbFontsChange(Sender: TObject);
@@ -56,19 +58,22 @@ type
     procedure Label2Click(Sender: TObject);
     procedure Label4Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure edtColorChange(Sender: TObject);
   private
     FChar: string;
     FFontName: string;
+    FFontColor: TColor;
     procedure UpdatePreview;
   public
     property FontName: string read FFontName;
+    property FontColor: TColor read FFontColor;
     property Character: string read FChar;
   end;
 
 var
   frmFontIconPicker: TfrmFontIconPicker;
 
-procedure CopyIconFont(const FontName, Character: string; Width, Height: Integer; Canvas: TCanvas);
+procedure CopyIconFont(const FontName, Character: string; Width, Height: Integer; Color: TColor; Canvas: TCanvas);
 
 implementation
 
@@ -77,15 +82,16 @@ implementation
 const
   DefaultFont = 'Segoe MDL2 Assets';
 
-procedure CopyIconFont(const FontName, Character: string; Width, Height: Integer; Canvas: TCanvas);
+procedure CopyIconFont(const FontName, Character: string; Width, Height: Integer; Color: TColor; Canvas: TCanvas);
 var
   CharWidth: Integer;
   CharHeight: Integer;
 begin
   Canvas.Font.Name := FontName;
   Canvas.Font.Height := Height;
-  Canvas.Font.Color := clBlack;
+  Canvas.Font.Color := Color;
   Canvas.Brush.Color := clWhite;
+  Canvas.FillRect(Rect(0, 0, Width, Height));
   CharWidth := Canvas.TextWidth(Character);
   CharHeight := Canvas.TextHeight(Character);
   Canvas.TextOut((Width - CharWidth) div 2, (Height - CharHeight) div 2, Character);
@@ -94,6 +100,7 @@ end;
 procedure TfrmFontIconPicker.Button1Click(Sender: TObject);
 begin
   FFontName := cmbFonts.Text;
+  FFontColor := edtColor.Selected;
 end;
 
 procedure TfrmFontIconPicker.cmbFontsChange(Sender: TObject);
@@ -119,9 +126,15 @@ begin
     Key := #0;
 end;
 
+procedure TfrmFontIconPicker.edtColorChange(Sender: TObject);
+begin
+  UpdatePreview;
+end;
+
 procedure TfrmFontIconPicker.FormCreate(Sender: TObject);
 begin
   cmbFonts.Items := Screen.Fonts;
+  edtColor.Selected := clBlack;
   if cmbFonts.Items.IndexOf(DefaultFont) > 0 then
   begin
     cmbFonts.Text := DefaultFont;
@@ -148,11 +161,11 @@ end;
 
 procedure TfrmFontIconPicker.UpdatePreview;
 begin
-  CopyIconFont(cmbFonts.Text, FChar, 16, 16, Image16x16.Canvas);
+  CopyIconFont(cmbFonts.Text, FChar, 16, 16, edtColor.Selected, Image16x16.Canvas);
 
-  CopyIconFont(cmbFonts.Text, FChar, 32, 32, Image32x32.Canvas);
+  CopyIconFont(cmbFonts.Text, FChar, 32, 32, edtColor.Selected, Image32x32.Canvas);
 
-  CopyIconFont(cmbFonts.Text, FChar, 64, 64, Image64x64.Canvas);
+  CopyIconFont(cmbFonts.Text, FChar, 64, 64, edtColor.Selected, Image64x64.Canvas);
 
 end;
 
