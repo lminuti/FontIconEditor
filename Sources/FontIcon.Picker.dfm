@@ -226,3 +226,4 @@ object frmFontIconPicker: TfrmFontIconPicker
     TabOrder = 5
   end
 end
+ 
