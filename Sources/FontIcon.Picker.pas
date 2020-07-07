@@ -19,17 +19,17 @@
 {  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    }
 {  See the License for the specific language governing permissions and         }
 {  limitations under the License.                                              }
-{                                                                              }
 {******************************************************************************}
+
 unit FontIcon.Picker;
 
-interface
+INTERFACE
 
-uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+USES
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ShellAPI, Vcl.ExtCtrls;
 
-type
+TYPE
   TfrmFontIconPicker = class(TForm)
     Label1: TLabel;
     cmbFonts: TComboBox;
@@ -51,6 +51,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     edtColor: TColorBox;
+    Button2: TButton;
     procedure FormCreate(Sender: TObject);
     procedure edtCharChange(Sender: TObject);
     procedure cmbFontsChange(Sender: TObject);
@@ -70,17 +71,16 @@ type
     property Character: string read FChar;
   end;
 
-var
+VAR
   frmFontIconPicker: TfrmFontIconPicker;
 
 procedure CopyIconFont(const FontName, Character: string; Width, Height: Integer; Color: TColor; Canvas: TCanvas);
 
-implementation
-
-{$R *.dfm}
+implementation {$R *.dfm}
 
 const
   DefaultFont = 'Segoe MDL2 Assets';
+
 
 procedure CopyIconFont(const FontName, Character: string; Width, Height: Integer; Color: TColor; Canvas: TCanvas);
 var
@@ -97,76 +97,94 @@ begin
   Canvas.TextOut((Width - CharWidth) div 2, (Height - CharHeight) div 2, Character);
 end;
 
+
+
+
+
+
+
+
 procedure TfrmFontIconPicker.Button1Click(Sender: TObject);
 begin
   FFontName := cmbFonts.Text;
-  FFontColor := edtColor.Selected;
+  FFontColor:= edtColor.Selected;
 end;
+
 
 procedure TfrmFontIconPicker.cmbFontsChange(Sender: TObject);
 begin
   UpdatePreview;
 end;
 
+
 procedure TfrmFontIconPicker.edtCharChange(Sender: TObject);
 begin
-  if Length(edtChar.Text) = 4 then
-  begin
+  if Length(edtChar.Text) = 4
+  then
+   begin
     FChar := Chr(StrToInt('$' + edtChar.Text));
+    Caption:= 'Copied';
     UpdatePreview;
-  end;
+   end
+  else
+    Caption:= 'Length must be 4!';
 end;
+
 
 procedure TfrmFontIconPicker.edtCharKeyPress(Sender: TObject; var Key: Char);
 begin
-  if Key < #32 then
-    Exit;
+  if Key < #32 then Exit;
 
-  if Pos(UpperCase(Key), '0123456789ABCDEF') < 1 then
-    Key := #0;
+  if Pos(UpperCase(Key), '0123456789ABCDEF') < 1
+  then Key := #0;
 end;
+
 
 procedure TfrmFontIconPicker.edtColorChange(Sender: TObject);
 begin
   UpdatePreview;
 end;
 
+
 procedure TfrmFontIconPicker.FormCreate(Sender: TObject);
 begin
   cmbFonts.Items := Screen.Fonts;
   edtColor.Selected := clBlack;
-  if cmbFonts.Items.IndexOf(DefaultFont) > 0 then
-  begin
+  if cmbFonts.Items.IndexOf(DefaultFont) > 0
+  then
+   begin
     cmbFonts.Text := DefaultFont;
     edtChar.Text := 'E8EF';
-  end
+   end
   else
-  begin
+   begin
     cmbFonts.Text := Font.Name;
     edtChar.Text := '00B6';
-  end;
+   end;
   FChar := Chr(StrToInt('$' + edtChar.Text));
   UpdatePreview;
 end;
 
+
 procedure TfrmFontIconPicker.Label2Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'https://docs.microsoft.com/it-it/windows/uwp/design/style/segoe-ui-symbol-font', '', '', SW_SHOWNORMAL);
+  ShellExecute(Handle, 'open', 'https://www.onlinewebfonts.com/download/4f1c0acc06ffec914158fe07e208b731', '', '', SW_SHOWNORMAL); // Get font
 end;
+
 
 procedure TfrmFontIconPicker.Label4Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'charmap', '', '', SW_SHOWNORMAL);
 end;
 
+
 procedure TfrmFontIconPicker.UpdatePreview;
 begin
   CopyIconFont(cmbFonts.Text, FChar, 16, 16, edtColor.Selected, Image16x16.Canvas);
-
   CopyIconFont(cmbFonts.Text, FChar, 32, 32, edtColor.Selected, Image32x32.Canvas);
-
   CopyIconFont(cmbFonts.Text, FChar, 64, 64, edtColor.Selected, Image64x64.Canvas);
-
 end;
+
 
 end.
