@@ -21,21 +21,21 @@ object frmFontIconPicker: TfrmFontIconPicker
   TextHeight = 13
   object Label1: TLabel
     Left = 16
-    Top = 16
+    Top = 18
     Width = 22
     Height = 13
     Caption = 'Font'
   end
   object Label3: TLabel
     Left = 16
-    Top = 64
+    Top = 68
     Width = 115
     Height = 13
     Caption = 'Choose character (HEX)'
   end
   object Label2: TLabel
     Left = 16
-    Top = 367
+    Top = 373
     Width = 94
     Height = 13
     Cursor = crHandPoint
@@ -50,7 +50,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   end
   object Label4: TLabel
     Left = 16
-    Top = 342
+    Top = 354
     Width = 71
     Height = 13
     Cursor = crHandPoint
@@ -65,7 +65,7 @@ object frmFontIconPicker: TfrmFontIconPicker
   end
   object Label8: TLabel
     Left = 16
-    Top = 112
+    Top = 114
     Width = 25
     Height = 13
     Caption = 'Color'
@@ -81,48 +81,47 @@ object frmFontIconPicker: TfrmFontIconPicker
   end
   object Button1: TButton
     Left = 203
-    Top = 11
+    Top = 33
     Width = 75
     Height = 25
     Anchors = [akTop, akRight]
-    Caption = '&Ok'
-    Default = True
-    ModalResult = 1
-    TabOrder = 1
+    Caption = '&Insert'
+    TabOrder = 4
     OnClick = Button1Click
   end
   object btnCancel: TButton
     Left = 203
-    Top = 42
+    Top = 313
     Width = 75
     Height = 25
     Anchors = [akTop, akRight]
     Cancel = True
     Caption = '&Cancel'
     ModalResult = 2
-    TabOrder = 2
+    TabOrder = 6
   end
   object edtChar: TEdit
     Left = 16
-    Top = 83
+    Top = 84
     Width = 169
     Height = 21
+    Hint = 'Length must be 4'
     CharCase = ecUpperCase
     MaxLength = 4
-    TabOrder = 3
+    TabOrder = 1
     OnChange = edtCharChange
     OnKeyPress = edtCharKeyPress
   end
   object GroupBox1: TGroupBox
-    Left = 8
-    Top = 158
-    Width = 177
+    Left = 16
+    Top = 160
+    Width = 169
     Height = 178
     Caption = 'Preview'
     Color = clBtnFace
     ParentBackground = False
     ParentColor = False
-    TabOrder = 4
+    TabOrder = 3
     object Label5: TLabel
       Left = 54
       Top = 30
@@ -212,7 +211,18 @@ object frmFontIconPicker: TfrmFontIconPicker
     Top = 131
     Width = 169
     Height = 22
-    TabOrder = 5
+    TabOrder = 2
     OnChange = edtColorChange
+  end
+  object Button2: TButton
+    Left = 203
+    Top = 288
+    Width = 75
+    Height = 25
+    Anchors = [akTop, akRight]
+    Cancel = True
+    Caption = 'Close'
+    ModalResult = 1
+    TabOrder = 5
   end
 end
